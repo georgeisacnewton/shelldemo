@@ -38,14 +38,17 @@ pipeline {
                     slave:
                        {
                     node ('nodeone'){
-                               sh 'echo ${TEST}'                       
+                               sh 'echo ${TEST}; printenv'                      
 
                          }
                          })
                          }
                  }
                 stage ('deploy')
-                {steps{ echo ${env}}}
+                {steps{ echo ${env.branch}
+
+                }
+                }
 
 
                  }
