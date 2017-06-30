@@ -36,7 +36,7 @@ pipeline {
            sh 'echo ${TEST}'
                     }
 
-                },
+                }
         slave:
                 {
         agent nodeone
