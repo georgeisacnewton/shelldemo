@@ -6,7 +6,7 @@ pipeline {
    {
         TEST="welcome to jenkins"
    }
-   agent none
+   agent nodeone
    stages {
 
         stage ('test')
@@ -15,7 +15,6 @@ pipeline {
              echo 'Hello first script'
             } 
        }
-        node('nodeone') {
         stage ('build')
         {
             steps   {
@@ -31,8 +30,7 @@ pipeline {
                 
                 }
             }
-            }
-        }
+                }
        
     post {
         failure
