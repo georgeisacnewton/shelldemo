@@ -26,13 +26,26 @@ pipeline {
         
         stage ('fail')
         {
-            steps    { 
+
+        parallel
+        master:
+                 {
+        agent master 
                 
-                sh 'echo ${TEST}'
-                
+         steps      {
+           sh 'echo ${TEST}'
+                    }
+
+                },
+        slave:
+                {
+        agent nodeone
+
+        steps   {
+        sh 'echo ${TEST}'
+                }
                 }
             }
-                }
        
     post {
         failure
