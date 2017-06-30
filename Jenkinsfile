@@ -15,7 +15,7 @@ pipeline {
              echo 'Hello first script'
             } 
        }
-        node('node1') {
+        node('nodeone') {
         stage ('build')
         {
             steps   {
