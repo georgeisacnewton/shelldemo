@@ -6,10 +6,7 @@ pipeline {
    {
         TEST="welcome to jenkins"
    }
-   agent 
-   {
-   label 'one'
-   }
+   agent any
 
    stages {
 
