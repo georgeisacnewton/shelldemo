@@ -45,7 +45,7 @@ pipeline {
                          }
                  }
                 stage ('deploy')
-                {steps{ echo ${env.branch}
+                {steps{ sh 'echo ${env.branch}'
 
                 }
                 }
