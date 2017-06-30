@@ -29,21 +29,17 @@ pipeline {
 
                  parallel master:
                      {
-                    agent {master} 
-                
-                                 {
+                    node ('master')
+                    {
                             sh 'echo ${TEST}'
-                                      }
-
-                     }
-                         slave:
+                     }  
+                     }              
+                    slave:
                        {
-                    agent {nodeone}
+                    node ('nodeone'){
+                               sh 'echo ${TEST}'                       
 
-                                 {
-                               sh 'echo ${TEST}'
-                                     }
-
+                         }
                          }
                  }
                  }
