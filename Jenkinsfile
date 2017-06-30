@@ -21,13 +21,15 @@ pipeline {
                     sh 'cat /etc/passwd'
                }
         }
+        node {
         stage ('fail')
         {
             steps    { 
                 
-                sh 'echo ${TEST}'
+                sh 'echo ${TEST}
                 
                 }
+            }
             }
         }
        
