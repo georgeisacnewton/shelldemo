@@ -9,43 +9,44 @@ pipeline {
    
    agent any
 
-   stages {
+        stages {
 
-        stage ('test')
-        {
-            steps   { 
-             echo 'Hello first script'
-            } 
-       }
-        stage ('build')
-        {
-            steps   {
-                    sh 'cat /etc/passwd > test'
-               }
-        }
-        
-        stage ('fail')
-        {
-
-        parallel
-        master:
+              stage ('test')
                  {
-        agent master 
-                
-         steps      {
-           sh 'echo ${TEST}'
+                 steps   { 
+                     echo 'Hello first script'
+                            } 
                     }
-
-                }
-        slave:
+                stage ('build')
                 {
-        agent nodeone
+                     steps   {
+                    sh 'cat /etc/passwd > test'
+                              }
+                 }
+        
+                 stage ('fail')
+                 {
 
-        steps   {
-        sh 'echo ${TEST}'
-                }
-                }
-            }
+                 parallel master:
+                     {
+                    agent master 
+                
+                          steps      {
+                            sh 'echo ${TEST}'
+                                      }
+
+                     }
+                         slave:
+                       {
+                    agent nodeone
+
+                          steps   {
+                               sh 'echo ${TEST}'
+                                     }
+
+                         }
+                 }
+                 }
        
     post {
         failure
