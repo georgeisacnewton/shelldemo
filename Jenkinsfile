@@ -27,20 +27,20 @@ pipeline {
                  stage ('fail')
                  {
 
-                 parallel master:
+                 parallel (master:
                      {
                     node ('master')
                     {
                             sh 'echo ${TEST}'
                      }  
-                     }              
+                     },              
                     slave:
                        {
                     node ('nodeone'){
                                sh 'echo ${TEST}'                       
 
                          }
-                         }
+                         })
                  }
                  }
        
