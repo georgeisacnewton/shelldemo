@@ -1,6 +1,14 @@
+#!groovy
+
 pipeline {
-   agent any
+
+   environment 
+   {
+        TEST="welcome to jenkins"
+   }
+   agent none
    stages {
+
         stage ('test')
         {
             steps   { 
@@ -17,11 +25,12 @@ pipeline {
         {
             steps    { 
                 
-                sh 'date'
+                sh 'echo ${TEST}'
                 
                 }
             }
         }
+       
     post {
         failure
             {
