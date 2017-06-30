@@ -1,0 +1,21 @@
+pipeline {
+   stages {
+stage ('test')
+{ 
+'sh echo "Hello first script"'
+}
+stage ('build')
+{
+'sh cat /etc/passwd'
+}
+stage ('fail')
+{ 
+sdfdsfsdf
+}
+} 
+post {
+ failure
+{
+echo "failed"
+}
+}}
