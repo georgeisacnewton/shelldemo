@@ -31,7 +31,7 @@ pipeline {
                      {
                     agent master 
                 
-                          steps      {
+                                 {
                             sh 'echo ${TEST}'
                                       }
 
@@ -40,7 +40,7 @@ pipeline {
                        {
                     agent nodeone
 
-                          steps   {
+                                 {
                                sh 'echo ${TEST}'
                                      }
 
