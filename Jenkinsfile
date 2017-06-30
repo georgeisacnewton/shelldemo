@@ -29,7 +29,7 @@ pipeline {
 
                  parallel master:
                      {
-                    agent master 
+                    agent {master} 
                 
                                  {
                             sh 'echo ${TEST}'
@@ -38,7 +38,7 @@ pipeline {
                      }
                          slave:
                        {
-                    agent nodeone
+                    agent {nodeone}
 
                                  {
                                sh 'echo ${TEST}'
