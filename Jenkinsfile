@@ -44,6 +44,10 @@ pipeline {
                          })
                          }
                  }
+                stage ('deploy')
+                {steps{ echo ${env}}}
+
+
                  }
        
     post {
