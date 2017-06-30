@@ -15,7 +15,7 @@ pipeline {
              echo 'Hello first script'
             } 
        }
-        node {
+        node('local') {
         stage ('build')
         {
             steps   {
