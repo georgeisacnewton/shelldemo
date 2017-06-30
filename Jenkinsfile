@@ -27,6 +27,7 @@ pipeline {
                  stage ('fail')
                  {
 
+                    steps {
                  parallel (master:
                      {
                     node ('master')
@@ -41,6 +42,7 @@ pipeline {
 
                          }
                          })
+                         }
                  }
                  }
        
