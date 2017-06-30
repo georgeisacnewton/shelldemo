@@ -1,21 +1,31 @@
 pipeline {
+   agent any
    stages {
-stage ('test')
-{ 
-'sh echo "Hello first script"'
+        stage ('test')
+        {
+            steps   { 
+             echo 'Hello first script'
+            } 
+       }
+        stage ('build')
+        {
+            steps   {
+                    sh 'cat /etc/passwd'
+               }
+        }
+        stage ('fail')
+        {
+            steps    { 
+                
+                sh 'date'
+                
+                }
+            }
+        }
+    post {
+        failure
+            {
+                echo "failed"
+            }
+        }
 }
-stage ('build')
-{
-'sh cat /etc/passwd'
-}
-stage ('fail')
-{ 
-sdfdsfsdf
-}
-} 
-post {
- failure
-{
-echo "failed"
-}
-}}
