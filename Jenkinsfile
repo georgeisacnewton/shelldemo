@@ -1,62 +1,29 @@
 #!groovy
+pipeline
+{
+    agent any
 
-pipeline {
+    tools {
+        maven 'Maven'
+        jdk 'jdk8'
+    }
 
-   environment 
-   {
-        TEST="welcome to jenkins"
-   }
-   
-   agent any
+    stages
 
-        stages {
-
-              stage ('test')
-                 {
-                 steps   { 
-                     echo 'Hello first script'
-                            } 
-                    }
-                stage ('build')
-                {
-                     steps   {
-                    sh 'cat /etc/passwd > test'
-                              }
-                 }
-        
-                 stage ('fail')
-                 {
-
-                    steps {
-                 parallel (master:
-                     {
-                    node ('master')
-                    {
-                            sh 'echo ${TEST}'
-                     }  
-                     },              
-                    slave:
-                       {
-                    node ('nodeone'){
-                               sh 'echo ${TEST}'                      
-
-                         }
-                         })
-                         }
-                 }
-                stage ('deploy')
-                {steps{ sh 'printenv'
-
-                }
-                }
-
-
-                 }
-       
-    post {
-        failure
+        {
+        stage ('Build')
+        {
+        steps
             {
-                echo "failed"
+                sh 'clean package'
             }
         }
+        }
+    post
+    {
+        success
+        {
+        junit 'target/surefire-reports/**/*.xml'
+        }
+    }
 }
