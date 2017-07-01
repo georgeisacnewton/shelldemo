@@ -3,6 +3,8 @@ pipeline
 {
     agent any
 
+    triggers { pollSCM('* 0 0 0 0') }
+
     tools {
         maven 'Maven'
         jdk 'jdk8'
@@ -21,6 +23,8 @@ pipeline
         steps
             {
                 sh 'mvn clean package'
+                sh 'cp *.xml $WORKSPACE' 
+
             }
         }
         }
