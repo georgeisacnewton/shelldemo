@@ -23,8 +23,9 @@ pipeline
         steps
             {
                 sh 'mvn clean package'
-                sh 'cp *.xml $WORKSPACE' 
-
+                junit 'target/surefire-reports/**/*.xml'
+                sh 'cat /etc/passwd > test'
+                stash includes: 'test', name:tt
             }
         }
         }
@@ -32,7 +33,8 @@ pipeline
     {
         success
         {
-        junit 'target/surefire-reports/**/*.xml'
+          unstash 'tt'
+          sh 'cat test'
         }
     }
 }
