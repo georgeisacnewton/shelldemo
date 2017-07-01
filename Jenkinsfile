@@ -21,15 +21,15 @@ pipeline
         steps
             {
                 sh 'mvn clean package'
-                sh 'cat /etc/passwd > test'
-                stash includes: 'test', name: 'tt'
+                sh 'cat /etc/passwd > test.txt'
+                stash includes: 'test', name: 'test'
             }
         
          post
              {
                  success
              {
-              unstash 'tt'
+              unstash 'test'
               sh 'cat test'
               }
             }
