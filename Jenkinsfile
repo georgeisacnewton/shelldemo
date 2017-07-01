@@ -11,6 +11,9 @@ pipeline
     stages
 
         {
+        stage ('checkout'){
+                git branch: 'master', credentialsId: '365f08bf-6843-4c5b-8810-1b305dd38907', url: 'https://github.com/georgeisacnewton/game-of-life.git'
+        }
         stage ('Build')
         {
         steps
