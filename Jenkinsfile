@@ -22,7 +22,7 @@ pipeline
             {
                 sh 'mvn clean package'
                 sh 'cat /etc/passwd > test'
-                stash includes: 'test', name:tt
+                stash includes: 'test', name: 'tt'
             }
         
          post
