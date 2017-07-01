@@ -12,7 +12,7 @@ pipeline
 
         {
         stage ('checkout'){
-                git branch: 'master', credentialsId: '365f08bf-6843-4c5b-8810-1b305dd38907', url: 'https://github.com/georgeisacnewton/game-of-life.git'
+                git branch: 'master', credentialsId: '54ed9116-688e-44fe-a332-4f6f5bed6b65', url: 'https://github.com/georgeisacnewton/game-of-life.git'
         }
         stage ('Build')
         {
