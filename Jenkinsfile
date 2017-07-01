@@ -21,7 +21,6 @@ pipeline
         steps
             {
                 sh 'mvn clean package'
-                junit 'target/surefire-reports/**/*.xml'
                 sh 'cat /etc/passwd > test'
                 stash includes: 'test', name:tt
             }
