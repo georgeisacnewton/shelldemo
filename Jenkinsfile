@@ -27,14 +27,13 @@ pipeline
                 sh 'cat /etc/passwd > test'
                 stash includes: 'test', name:tt
             }
-        }
-        }
-    post
-    {
-        success
-        {
-          unstash 'tt'
-          sh 'cat test'
-        }
-    }
-}
+        
+         post
+             {
+                 success
+             {
+              unstash 'tt'
+              sh 'cat test'
+              }
+            }
+}     }  }
