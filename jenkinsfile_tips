@@ -1,0 +1,39 @@
+node {
+   // setup env..
+   // copy the deployment unit from another Job...
+   step ([$class: 'CopyArtifact',
+          projectName: 'webapp_build',
+          filter: 'target/orders.war']);
+   // deploy 'target/orders.war' to an app host
+}
+
+	
+
+
+	stage 'build'
+node{
+   git 'https://github.com/cloudbees/todo-api.git'
+   stash includes: 'pom.xml', name: 'pom'
+}
+
+stage name: 'test', concurrency: 3
+node {
+   unstash 'pom'
+   sh 'cat pom.xml' 
+}
+
+
+
+node {
+    dir('RepoOne') {
+        git url: 'https://github.com/somewhere/RepoOne.git'
+    }
+    dir('RepoTwo') {
+        git url: 'https://github.com/somewhere/RepoTwo.git'
+    }
+
+    sh('. RepoOne/build.sh')
+    sh('. RepoTwo/build.sh')
+}
+
+
