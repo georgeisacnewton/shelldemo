@@ -1,0 +1,18 @@
+Docker Machine with docker swarm
+
+curl -L https://github.com/docker/machine/releases/download/v0.12.0/docker-machine-`uname -s`-`uname -m` >/tmp/docker-machine &&
+chmod +x /tmp/docker-machine &&
+sudo cp /tmp/docker-machine /usr/local/bin/docker-machine
+
+
+
+docker-machine create -d amazonec2 --amazonec2-ami ami-a4c7edb2 --amazonec2-vpc-id vpc-4a18b733 --amazonec2-region us-east-1 --amazonec2-instance-type t2.micro --amazonec2-subnet-id subnet-dbf99493 --amazonec2-security-group sg-56d95927 --amazonec2-ssh-user ec2-user demo-swarm-manager
+
+
+docker-machine rm -f demo-swarm-manager
+docker-machine create -d amazonec2 \
+--amazonec2-region us-west-2 \
+--amazonec2-instance-type "t2.micro" \
+--amazonec2-ssh-keypath ~/.ssh/ssh_key \
+aws-test
+
